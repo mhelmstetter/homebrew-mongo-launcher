@@ -1,19 +1,15 @@
 class MongoLauncher < Formula
   desc "MongoDB Cluster Management Tool with Interactive CLI"
   homepage "https://github.com/mhelmstetter/mongo-launcher"
-  url "https://github.com/mhelmstetter/mongo-launcher/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "0e090743b8293ce902e35fc2df722d2144508e1a092a332c3789fb97eaef99fb"
+  url "https://github.com/mhelmstetter/mongo-launcher/releases/download/v1.0.0/mongo-launcher.jar"
+  sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
   license "Apache-2.0"
   
   depends_on "openjdk@17"
-  depends_on "maven" => :build
 
   def install
-    # Build the project
-    system "mvn", "clean", "package", "-DskipTests"
-    
-    # Install JAR file
-    libexec.install "bin/mongo-launcher.jar"
+    # Install JAR file directly
+    libexec.install "mongo-launcher.jar"
     
     # Create wrapper script
     (bin/"mongo-launcher").write <<~EOS
