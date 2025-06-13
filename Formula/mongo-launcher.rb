@@ -9,8 +9,8 @@ class MongoLauncher < Formula
   depends_on "openjdk@17"
 
   def install
-    # Install JAR file from extracted package
-    libexec.install "mongo-launcher-1.0.0-universal/mongo-launcher.jar"
+    # Install JAR file - it's extracted to mongo-launcher-1.0.0-universal/ directory
+    libexec.install "mongo-launcher.jar"
     
     # Create wrapper script
     (bin/"mongo-launcher").write <<~EOS
