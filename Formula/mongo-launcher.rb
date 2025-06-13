@@ -1,15 +1,16 @@
 class MongoLauncher < Formula
   desc "MongoDB Cluster Management Tool with Interactive CLI"
   homepage "https://github.com/mhelmstetter/mongo-launcher"
-  url "https://github.com/mhelmstetter/mongo-launcher/releases/download/v1.0.0/mongo-launcher.jar"
-  sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+  url "https://github.com/mhelmstetter/mongo-launcher/releases/download/v1.0.3/mongo-launcher-1.0.0-universal.tar.gz"
+  sha256 "bf7006eb1ea99bc921a78c80a7cd9a170d39480099021df6ff46ca48af371052"
   license "Apache-2.0"
+  version "1.0.3"
   
   depends_on "openjdk@17"
 
   def install
-    # Install JAR file directly
-    libexec.install "mongo-launcher.jar"
+    # Install JAR file from extracted package
+    libexec.install "mongo-launcher-1.0.0-universal/mongo-launcher.jar"
     
     # Create wrapper script
     (bin/"mongo-launcher").write <<~EOS
@@ -23,7 +24,7 @@ class MongoLauncher < Formula
 
   test do
     # Test that the application runs and shows version
-    assert_match "1.0.0", shell_output("#{bin}/mongo-launcher --version")
+    assert_match "1.0", shell_output("#{bin}/mongo-launcher --version")
   end
 
   def caveats
